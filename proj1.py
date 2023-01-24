@@ -19,8 +19,8 @@ def matMult(mat1, mat2):
         print("Error: Invalid Matrix Size Mismatch (# columns of Matrix 1 must equal # rows of matrix 2")
         return
     else:
-        result = [0] * len(mat1[0])
-        for i in range(len(mat1[0])):
+        result = [0] * len(mat1)
+        for i in range(len(mat1)):
             result[i] = [0] * len(mat2)
             for j in range(len(mat2)):
                 num = 0
