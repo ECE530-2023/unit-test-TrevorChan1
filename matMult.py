@@ -4,10 +4,11 @@ import tracemalloc
 import numpy as np
 import logging
 
-tracemalloc.start()
-logging.basicConfig(filename='matMult.log', filemode='w', format='%(asctime)s %(levelname)s - %(message)s')
 
 def matMult(mat1, mat2):
+    tracemalloc.start()
+    logging.basicConfig(filename='matMult.log', filemode='w', format='%(asctime)s %(levelname)s - %(message)s')
+
     logging.info('input 1: %d',mat1)
     logging.info('input 2: %d', mat2)
     #Error code -1: Checking if mat1 input is empty
@@ -59,9 +60,16 @@ def matMult(mat1, mat2):
                         num += mat1[i][k] * mat2[k][j]
                     result[i][j] = num
             logging.debug("Successfully ran Matrix Multiplication")
+            snapshot = tracemalloc.take_snapshot()
+            top_stats = snapshot.statistics('lineno')
+            print("[ Top 10 ]")
+            for stat in top_stats[:10]:
+                print(stat)
             return result
         except Exception as e:
             logging.error("Exception occured", exc_info=True)
+        
+    
             
 
 mat1 = [
@@ -75,5 +83,5 @@ mat2 = [
     [7, 8, 9]
 ]
 
-matMult(mat1, mat2)
+print(matMult(mat1, mat2))
     
