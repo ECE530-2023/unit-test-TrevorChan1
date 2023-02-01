@@ -1,5 +1,7 @@
 import matMult
 import pytest
+import tracemalloc
+import logging 
 
 mat1 = [
     [1, 2, 3],
