@@ -3,6 +3,8 @@ import pytest
 import tracemalloc
 import numpy as np
 import logging
+import cProfile
+import re
 
 
 def matMult(mat1, mat2):
@@ -60,6 +62,7 @@ def matMult(mat1, mat2):
                         num += mat1[i][k] * mat2[k][j]
                     result[i][j] = num
             logging.debug("Successfully ran Matrix Multiplication")
+            cProfile.run('re.compile("foo|bar")')
             snapshot = tracemalloc.take_snapshot()
             top_stats = snapshot.statistics('lineno')
             print("[ Top 10 ]")
