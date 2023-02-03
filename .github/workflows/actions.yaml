@@ -21,5 +21,20 @@ jobs:
         with:
           python-version: 3.11.1
           architecture: x64
+      - name: Install Dependencies
+        run: pip install flake8
       - name: flake8 lint
-        uses: py-actions/flake8@v2
+        run: | 
+           flake8 . --exit-zero
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.1
+          architecture: x64
+      - name: Download Requirements
+        run: pip install pytest 
+      - name: Run pytest
+        run: python -m pytest
