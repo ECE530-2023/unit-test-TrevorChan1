@@ -8,7 +8,7 @@ jobs:
       - name: Download Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8.2
+          python-version: 3.8
           architecture: x64
       - name: whatthefuckishappening
         run: ls
@@ -25,7 +25,7 @@ jobs:
       - name: Download Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8.2
+          python-version: 3.8
           architecture: x64
       - name: whatthefuckishappening
         run: ls
