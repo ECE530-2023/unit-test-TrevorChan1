@@ -22,4 +22,4 @@ jobs:
           python-version: 3.11.1
           architecture: x64
       - name: flake8 lint
-        uses: py-actions/flake8@v2
+        run: flake8
