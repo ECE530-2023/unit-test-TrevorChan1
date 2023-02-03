@@ -1,4 +1,4 @@
-import matMult as matMult
+import matMult
 
 mat1 = [
     [1, 2, 3],
