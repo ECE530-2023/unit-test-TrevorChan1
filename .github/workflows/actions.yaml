@@ -17,21 +17,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.11.1
+          python-version: 3.7
           architecture: x64
       - name: Install Dependencies
         run: pip install flake8
       - name: flake8 lint
-        run: flake8 . --exit-zero
+        run: |
+          flake8 . --count --show-source --statistics
+          flake8 . --count --exit-zero
+
   pytest:
     runs-on: ubuntu-latest
     steps:
       - name: Download Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.11.1
+          python-version: 3.7
           architecture: x64
       - name: Download Requirements
         run: pip install pytest 
