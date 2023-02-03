@@ -1,12 +1,12 @@
 import tracemalloc
 import logging
 import cProfile
+import re
 
 
 # Flake8 used in Github Actions
 def matMult(mat1, mat2):
-#test
-#fuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcslafuckjahcusahcsla
+    
     tracemalloc.start()
 
     # Set logging to log any errors/warnings to matMult.log
@@ -69,15 +69,19 @@ def matMult(mat1, mat2):
 
             logging.debug("Successfully ran Matrix Multiplication")
             cProfile.run('re.compile("foo|bar")')
+
+            # Memory: Finds 10 highest uses of memory, if > 10MB log warning
             snapshot = tracemalloc.take_snapshot()
             top_stats = snapshot.statistics('lineno')
-            print("[ Top 10 ]")
             for stat in top_stats[:10]:
-                print(stat)
+                if(stat.size > 10000000):
+                    logging.warning("Memory allocated took up over 10MB for", stat)
+                else:
+                    logging.debug(stat)
             return result
         except Exception as e:
             logging.error("Exception occured", exc_info=True)
-            print("Exception %s", e)
+            print("Exception", e)
 
 
 mat1 = [
@@ -91,4 +95,4 @@ mat2 = [
     [7, 8, 9]
 ]
 
-print(matMult(None, mat2))
+print(matMult(mat1, mat2))
