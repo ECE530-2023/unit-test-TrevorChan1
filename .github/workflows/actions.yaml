@@ -17,13 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.4
           architecture: x64
       - name: Install Dependencies
         run: pip install flake8 pytest tracemalloc logging cProfile
-        with:
-          checkName: 'flake8_py3'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: flake8 lint
+        uses: py-actions/flake8@v2
