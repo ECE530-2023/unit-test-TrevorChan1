@@ -15,7 +15,7 @@ jobs:
           pip install flake8
       - name: flake8 lint
         run: |
-          flake8 .
+          flake8 ../..
         continue-on-error: true
 
   pytest:
@@ -31,4 +31,4 @@ jobs:
           pip install pytest 
       - name: Run pytest
         run: |
-          python -m pytest
+          python -m pytest ../..
