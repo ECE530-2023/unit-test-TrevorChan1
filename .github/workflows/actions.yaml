@@ -23,7 +23,6 @@ jobs:
           architecture: x64
       - name: Install Dependencies
         run: pip install flake8 pytest tracemalloc logging cProfile
-        uses: suo/actions@releases/v1
         with:
           checkName: 'flake8_py3'
         env:
