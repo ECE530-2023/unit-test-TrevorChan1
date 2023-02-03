@@ -10,6 +10,8 @@ jobs:
         with:
           python-version: 3.7
           architecture: x64
+      - name: whatthefuckishappening
+        run: ls
       - name: Install Dependencies
         run: pip install flake8
       - name: flake8 lint
@@ -25,6 +27,8 @@ jobs:
         with:
           python-version: 3.7
           architecture: x64
+      - name: whatthefuckishappening
+        run: ls
       - name: Download Requirements
         run: pip install pytest 
       - name: Run pytest
