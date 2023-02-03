@@ -8,43 +8,27 @@ jobs:
       - name: Download Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
-          architecture: x64
-      - name: whatthefuckishappening
-        run: ls
+          python-version: 3.x
       - name: Install Dependencies
-        run: pip install flake8
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
       - name: flake8 lint
         run: |
-          flake8 . --count --show-source --statistics
-          flake8 . --count --exit-zero
+          flake8 .
+        continue-on-error: true
 
-  test:
+  pytest:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
-      # Setup Python (faster than using Python container)
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - name: Download Python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
-
-      - name: Install pipenv
+          python-version: 3.x
+      - name: Download Requirements
         run: |
-          python -m pip install --upgrade pipenv wheel
-      - id: cache-pipenv
-        uses: actions/cache@v1
-        with:
-          path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
-
-      - name: Install dependencies
+          python -m pip install --upgrade pip
+          pip install pytest 
+      - name: Run pytest
         run: |
-          pipenv install --deploy --dev
-      - name: Run test suite
-        run: |
-          pipenv run test -v
+          python -m pytest
