@@ -24,8 +24,7 @@ jobs:
       - name: Install Dependencies
         run: pip install flake8
       - name: flake8 lint
-        run: | 
-           flake8 . --exit-zero
+        run: flake8 . --exit-zero
   pytest:
     runs-on: ubuntu-latest
     steps:
@@ -37,4 +36,4 @@ jobs:
       - name: Download Requirements
         run: pip install pytest 
       - name: Run pytest
-        run: python -m pytest
+        run: pytest
