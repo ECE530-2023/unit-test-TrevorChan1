@@ -21,7 +21,8 @@ jobs:
         with:
           python-version: 3.11.1
           architecture: x64
-      - name: Install Dependencies
-        run: pip install flake8 pytest
       - name: flake8 lint
-        run: flake8
+        run: | 
+           set -eux 
+           pip install flake8==3.8.2 flake8-bugbear flake8-comprehensions flake8-executable flake8-pyi==20.5.0 mccabe pycodestyle==2.6.0 pyflakes==2.2.0 
+           flake8
